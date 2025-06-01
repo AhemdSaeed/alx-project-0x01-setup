@@ -56,9 +56,10 @@ export async function getStaticProps() {
   const posts = await response.json();
 
   return {
-    props: {
-      posts,
-    },
+
+    posts.map((post) => {
+      <h1>{post.name}</h1>
+    })
   };
 }
 
