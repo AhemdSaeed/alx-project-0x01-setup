@@ -1,8 +1,8 @@
 import PostCard from "@/components/common/PostCard";
 import PostModal from "@/components/common/PostModal";
 import Header from "@/components/layout/Header";
-import   {PostProps}   from "@/interfaces";
 import  {Postdata} from "@/interfaces";
+import   {PostProps}   from "@/interfaces";
 import { useState } from "react";
 
 interface PostsPageProps {
@@ -11,10 +11,10 @@ interface PostsPageProps {
 
 const Posts: React.FC<PostsPageProps> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [post, setPost] = useState<PostProps | null>(null);
+  const [post, setPost] = useState<Postdata | null>(null);
 
 
-  const handleAddPost = (newPost: PostProps) => {
+  const handleAddPost = (newPost: Postdata) => {
     setPost({ ...newPost, id: posts.length + 1 });
   };
 
