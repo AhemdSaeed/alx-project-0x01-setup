@@ -1,23 +1,22 @@
 import PostCard from "@/components/common/PostCard";
 import PostModal from "@/components/common/PostModal";
 import Header from "@/components/layout/Header";
-import { PostData  } from "@/interfaces";
-import {   PostProps } from "@/interfaces";
-import { useState } from "react";
+import { PostData, PostProps } from "@/interfaces";
+import { useState, useEffect } from "react";
 
-interface PostsPageProps {
-  posts: PostProps[];
-}
-
-const Posts: React.FC<PostsPageProps> = ({ posts }) => {
+const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [post, setPost] = useState<PostData | null>(null);
-
 
   const handleAddPost = (newPost: PostData) => {
     setPost({ ...newPost, id: posts.length + 1 });
   };
 
+  useEffect(() => {
+    if (post) {
+      console.log(post);
+    }
+  }, [post]);
 
   return (
     <div className="flex flex-col h-screen">
@@ -26,7 +25,7 @@ const Posts: React.FC<PostsPageProps> = ({ posts }) => {
         <div className="flex justify-between">
           <h1 className=" text-2xl font-semibold">Post Content</h1>
           <button onClick={() => setModalOpen(true)}
-            className="bg-blue-700 px-4 py-2 rounded-full text-white">Add Post</button>
+            className="bg-blue-700 px-4 py-2 rounded-full text-white cursor-pointer">Add Post</button>
         </div>
         <div className="grid grid-cols-3 gap-2 ">
           {
